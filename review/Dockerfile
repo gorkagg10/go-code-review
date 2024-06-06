@@ -1,14 +1,19 @@
 # build stage
 FROM golang:latest AS builder
 
-RUN apk add git gcc libc-dev
-
 WORKDIR /go/src/coupon-service
 
-COPY . .
+COPY go.mod .
+COPY go.sum .
+RUN go mod download
 
-WORKDIR /go/src/coupon-service/cmd/export
-RUN go build -o main .
+COPY cmd ./cmd
+COPY pkg ./pkg
 
-ENTRYPOINT ./main
+RUN CGO_ENABLED=0 go build -o bin/code-review cmd/coupon_service/main.go
+
+FROM scratch
 EXPOSE 8080
+COPY --from=builder /go/src/coupon-service/bin .
+ENTRYPOINT ["./code-review"]
+

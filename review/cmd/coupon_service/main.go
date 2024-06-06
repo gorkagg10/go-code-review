@@ -1,25 +1,26 @@
 package main
 
 import (
-	"coupon_service/internal/api"
-	"coupon_service/internal/config"
-	"coupon_service/internal/repository/memdb"
-	"coupon_service/internal/service"
+	"coupon_service/pkg/api"
+	"coupon_service/pkg/config"
+	control "coupon_service/pkg/controller"
+	repo "coupon_service/pkg/repository"
+	serv "coupon_service/pkg/service"
 	"fmt"
-	"time"
 )
 
 var (
-	cfg  = config.New()
-	repo = memdb.New()
+	configuration = config.NewConfig()
+	repository    = repo.NewRepository()
 )
 
 func main() {
-	svc := service.New(repo)
-	本 := api.New(cfg.API, svc)
-	本.Start()
+	service := serv.NewService(repository)
+	controller := control.NewController(service)
+	server := api.NewApi(configuration.Api, controller)
+	server.Start()
 	fmt.Println("Starting Coupon service server")
-	<-time.After(1 * time.Hour * 24 * 365)
+	//<-time.After(1 * time.Hour * 24 * 365)
 	fmt.Println("Coupon service server alive for a year, closing")
-	本.Close()
+	server.Close()
 }
