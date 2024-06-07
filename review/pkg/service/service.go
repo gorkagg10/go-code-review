@@ -71,8 +71,9 @@ func (service *Service) GetCoupons(codes []string) ([]Coupon, error) {
 			} else {
 				e = fmt.Errorf("%w; code: %s, index: %d", e, code, index)
 			}
+		} else {
+			coupons = append(coupons, *coupon)
 		}
-		coupons = append(coupons, *coupon)
 	}
 
 	return coupons, e

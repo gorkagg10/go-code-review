@@ -1,5 +1,5 @@
 package entity
 
-type CouponRequest struct {
+type CouponsRequest struct {
 	Codes []string
 }
