@@ -7,6 +7,7 @@ import (
 	repo "coupon_service/pkg/repository"
 	serv "coupon_service/pkg/service"
 	"fmt"
+	"time"
 )
 
 var (
@@ -20,7 +21,7 @@ func main() {
 	server := api.NewApi(configuration.Api, controller)
 	server.Start()
 	fmt.Println("Starting Coupon service server")
-	//<-time.After(1 * time.Hour * 24 * 365)
+	<-time.After(1 * time.Hour * 24 * 365)
 	fmt.Println("Coupon service server alive for a year, closing")
 	server.Close()
 }
