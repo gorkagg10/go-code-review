@@ -14,6 +14,6 @@ RUN CGO_ENABLED=0 go build -o bin/code-review cmd/coupon_service/main.go
 
 FROM scratch
 EXPOSE 8080
-COPY --from=builder /go/src/coupon-service/bin .
-ENTRYPOINT ["./code-review"]
+COPY --from=builder /go/src/coupon-service/bin ./bin
+ENTRYPOINT ["./bin/code-review"]
 

@@ -7,11 +7,13 @@ import (
 	"os"
 )
 
-var filePath = "./config/config.json"
+// For running locally
+//var filePath = "./config/config.json"
 
 // Uncomment the below variable and comment the upper variable when creating a docker image
 // IMPORTANT: That file has to be mounted as a volume when running the docker container
 //var filePath = "/go/src/coupon-service/config/config.json"
+var filePath = "../config/config.json"
 
 type ApiConfig struct {
 	Host string

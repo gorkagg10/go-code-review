@@ -39,7 +39,7 @@ func (controller *Controller) Apply(c *gin.Context) {
 }
 
 func (controller *Controller) Create(c *gin.Context) {
-	apiReq := entity.Coupons{}
+	apiReq := entity.Coupon{}
 	if err := c.ShouldBindJSON(&apiReq); err != nil {
 		c.JSON(http.StatusBadRequest, err)
 		return
@@ -53,7 +53,7 @@ func (controller *Controller) Create(c *gin.Context) {
 }
 
 func (controller *Controller) Get(c *gin.Context) {
-	apiReq := entity.CouponRequest{}
+	apiReq := entity.CouponsRequest{}
 	if err := c.ShouldBindJSON(&apiReq); err != nil {
 		c.JSON(http.StatusBadRequest, err)
 		return
