@@ -7,12 +7,12 @@ import (
 	"os"
 )
 
-// For running locally
+// For running locally with command "go run cmd/coupon_service"
 //var filePath = "./config/config.json"
 
-// Uncomment the below variable and comment the upper variable when creating a docker image
-// IMPORTANT: That file has to be mounted as a volume when running the docker container
-//var filePath = "/go/src/coupon-service/config/config.json"
+// Uncomment the below variable and comment the upper variable when building a docker image
+// or a binary file
+// IMPORTANT: That file has to be mounted as a volume when running a docker container
 var filePath = "../config/config.json"
 
 type ApiConfig struct {
